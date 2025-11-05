@@ -50,9 +50,7 @@ public class ReactionGameV3 {
             System.out.printf("The initial wait time was %.2f s\n",waitTimeInSeconds);
 
             reactionTime = inputTime - initialTime;
-            
             speeds[count] = reactionTime;
-            ++count;
             
             System.out.println("Your reaction time is " + reactionTime + " ms");
             
