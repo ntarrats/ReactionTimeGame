@@ -14,26 +14,26 @@
  * Output reaction time to user
  *
  ******************************************************************************/
-import java.util.*;
+package reactiongamev3;
 
-public class ReactionTimeGame {
+import java.util.Random;
+import java.util.Scanner;
+
+public class ReactionGameV3 {
     public static void main(String[] args) {
         boolean isPlaying = true;
-        int count = 0;
         long[] speeds;
         speeds = new long[5];
-        while (isPlaying == true && count <= 4) {
+        
+        for (int count = 0; count < 5 || isPlaying == false; count++) {
             int waitTime;
-            long initialTime;
-            long inputTime=0;
-            long reactionTime;
+            long initialTime, reactionTime, inputTime = 0;
             double waitTimeInSeconds;
             Random gen = new Random();
             Scanner scan = new Scanner (System.in);
+            
             waitTime = gen.nextInt(4000)+1000;
-
             System.out.println("Get ready!");
-
             try {
                 Thread.sleep(waitTime);
             }
@@ -56,7 +56,7 @@ public class ReactionTimeGame {
             
             System.out.println("Your reaction time is " + reactionTime + " ms");
             
-            if (count <= 4) { 
+            if (count < 5) { 
                 System.out.println("Would you like to play again? (y/n)");
                 
                 if (scan.next().equalsIgnoreCase("y")) {
@@ -68,12 +68,12 @@ public class ReactionTimeGame {
                 }
             }
         }
-        long reactionSpeedAvg = (speeds[0] + speeds[1] + speeds[2] + speeds[3] + 
-                speeds[4])/5;
-        System.out.println("Reaction Times:" +
-                            "\n1. " + speeds[0] + " ms\n2. " + speeds[1] +
-                            " ms\n3. " + speeds[2] + " ms\n4. " + speeds[3] +
-                            " ms\n5. " + speeds[4] +
-                            " ms\nAverage Speed: " + reactionSpeedAvg + " ms");
+    long reactionSpeedAvg = (speeds[0] + speeds[1] + speeds[2] + speeds[3] + 
+                                speeds[4])/5;
+    System.out.println("Reaction Times:" +
+                        "\n1. " + speeds[0] + " ms\n2. " + speeds[1] +
+                        " ms\n3. " + speeds[2] + " ms\n4. " + speeds[3] +
+                        " ms\n5. " + speeds[4] +
+                        " ms\nAverage Speed: " + reactionSpeedAvg + " ms");
     }
 }
