@@ -10,13 +10,13 @@ public class ReactionGameV3 {
         boolean isPlaying = true;
         long[] speeds;
         speeds = new long[5];
-        int count = 0;   
+        int count = 0;
         
         while (count < MAX_PLAYS && isPlaying == true) {
             int waitTime;
             long initialTime, reactionTime, inputTime = 0;
             double waitTimeInSeconds;
-            Random gen = new Random();  
+            Random gen = new Random();
             Scanner scan = new Scanner (System.in);
             
             waitTime = gen.nextInt(4000)+1000;
@@ -59,10 +59,11 @@ public class ReactionGameV3 {
         }
         reactionSpeedAvg = reactionSpeedAvg/count;
         System.out.println("Ending count: " + count);
-        System.out.println("Reaction Times:" +
-                            "\n1. " + speeds[0] + " ms\n2. " + speeds[1] +
-                            " ms\n3. " + speeds[2] + " ms\n4. " + speeds[3] +
-                            " ms\n5. " + speeds[4] +
-                            " ms\nAverage Speed: " + reactionSpeedAvg + " ms");
+        
+        System.out.println("Reaction Times:");
+        for (int i = 0; i < speeds.length; i++) {
+            System.out.println(i+1 + ". " + speeds[i] + " ms");
+        }
+        System.out.println("Average speed: " + reactionSpeedAvg + " ms");  
     }
 }
