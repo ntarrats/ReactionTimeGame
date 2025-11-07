@@ -10,13 +10,13 @@ public class ReactionGameV3 {
         boolean isPlaying = true;
         long[] speeds;
         speeds = new long[5];
-        int count = 0;
+        int count = 0;   
         
         while (count < MAX_PLAYS && isPlaying == true) {
             int waitTime;
             long initialTime, reactionTime, inputTime = 0;
             double waitTimeInSeconds;
-            Random gen = new Random();
+            Random gen = new Random();  
             Scanner scan = new Scanner (System.in);
             
             waitTime = gen.nextInt(4000)+1000;
@@ -32,7 +32,6 @@ public class ReactionGameV3 {
             if (scan.hasNextLine()) {
                 inputTime = System.currentTimeMillis();
             }
-
             waitTimeInSeconds = (double)waitTime/1000;
             System.out.printf("The initial wait time was %.2f s\n",waitTimeInSeconds);
 
@@ -42,7 +41,7 @@ public class ReactionGameV3 {
             
             System.out.println("Your reaction time is " + reactionTime + " ms");
 
-            if (count < 5) {
+            if (count < MAX_PLAYS) {
                 System.out.println("Would you like to play again? (y/n)");
                 
                 if (scan.next().equalsIgnoreCase("y")) {
@@ -51,9 +50,9 @@ public class ReactionGameV3 {
                 else {
                 System.out.println("Thanks for playing. Goodbye.");
                 isPlaying = false;
+                scan.close();
                 }
             }
-            scan.close();
         }
         for (int i = 0; i < speeds.length; i++) {
             reactionSpeedAvg = reactionSpeedAvg + speeds[i];
