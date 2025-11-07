@@ -1,19 +1,3 @@
-/*******************************************************************************
- * Author: Nicolas Tarrats
- * FileName: ReactionTimeGame.java
- * Purpose: Demonstrates usage of system clock data grabbing + variable storage
- *
- * Pseudocode
- * Wait random time
- * Output "Press 'enter' now"
- *      Record system time in double initialTime
- * Scan for user's enter input
- *      Record system time in double inputTime
- * Calculate user's reaction time using formula "inputTime - initialTime"
- *      Record in double reactionTime
- * Output reaction time to user
- *
- ******************************************************************************/
 package reactiongamev3;
 
 import java.util.Random;
@@ -21,11 +5,14 @@ import java.util.Scanner;
 
 public class ReactionGameV3 {
     public static void main(String[] args) {
+        final int MAX_PLAYS = 5;
+        long reactionSpeedAvg = 0;
         boolean isPlaying = true;
         long[] speeds;
         speeds = new long[5];
+        int count = 0;
         
-        for (int count = 0; count < 5 || isPlaying == false; count++) {
+        while (count < MAX_PLAYS && isPlaying == true) {
             int waitTime;
             long initialTime, reactionTime, inputTime = 0;
             double waitTimeInSeconds;
@@ -51,10 +38,11 @@ public class ReactionGameV3 {
 
             reactionTime = inputTime - initialTime;
             speeds[count] = reactionTime;
+            ++count;
             
             System.out.println("Your reaction time is " + reactionTime + " ms");
-            
-            if (count < 5) { 
+
+            if (count < 5) {
                 System.out.println("Would you like to play again? (y/n)");
                 
                 if (scan.next().equalsIgnoreCase("y")) {
@@ -65,13 +53,17 @@ public class ReactionGameV3 {
                 isPlaying = false;
                 }
             }
+            scan.close();
         }
-    long reactionSpeedAvg = (speeds[0] + speeds[1] + speeds[2] + speeds[3] + 
-                                speeds[4])/5;
-    System.out.println("Reaction Times:" +
-                        "\n1. " + speeds[0] + " ms\n2. " + speeds[1] +
-                        " ms\n3. " + speeds[2] + " ms\n4. " + speeds[3] +
-                        " ms\n5. " + speeds[4] +
-                        " ms\nAverage Speed: " + reactionSpeedAvg + " ms");
+        for (int i = 0; i < speeds.length; i++) {
+            reactionSpeedAvg = reactionSpeedAvg + speeds[i];
+        }
+        reactionSpeedAvg = reactionSpeedAvg/count;
+        System.out.println("Ending count: " + count);
+        System.out.println("Reaction Times:" +
+                            "\n1. " + speeds[0] + " ms\n2. " + speeds[1] +
+                            " ms\n3. " + speeds[2] + " ms\n4. " + speeds[3] +
+                            " ms\n5. " + speeds[4] +
+                            " ms\nAverage Speed: " + reactionSpeedAvg + " ms");
     }
 }
